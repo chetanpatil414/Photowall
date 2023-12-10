@@ -29,13 +29,22 @@ class Main extends React.Component {
         },
       ],
     };
+
+    this.RemovePhoto = this.RemovePhoto.bind(this);
+  }
+
+  RemovePhoto(postRemoved) {
+    console.log(postRemoved.description);
+    this.setState((state) => ({
+      posts: state.posts.filter((post) => post !== postRemoved),
+    }));
   }
 
   render() {
     return (
       <div>
         <Tittle tittle={"Photowall"} />
-        <PhotoWall posts={this.state.posts} />
+        <PhotoWall posts={this.state.posts} onRemovePhoto={this.RemovePhoto} />
       </div>
     );
   }
