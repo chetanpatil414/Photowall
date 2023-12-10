@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 function Photo(props) {
   const post = props.post;
@@ -16,6 +17,17 @@ function Photo(props) {
     </figure>
   );
 }
+
+//PropType
+
+// In React, PropTypes is a mechanism for documenting and validating the data types of properties passed to React components.
+// It helps ensure that the components receive the expected types of data,
+// and it can provide warnings or errors during development if the types don't match.
+
+Photo.prototype = {
+  Post: PropTypes.object.isRequired,
+  onRemovePhoto: PropTypes.func.isRequired,
+};
 
 // class Photo extends React.Component {
 //   render() {
