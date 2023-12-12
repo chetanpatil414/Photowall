@@ -3,6 +3,7 @@ import Tittle from "./Tittle";
 import "/Users/chetanpatil/eclipse-workspace/ReactProject/photowall/src/styles/TittleStylesheet.css";
 import PhotoWall from "./PhotoWall";
 import AddPhoto from "./AddPhoto";
+import { Route } from "react-router-dom";
 
 class Main extends React.Component {
   constructor() {
@@ -29,11 +30,9 @@ class Main extends React.Component {
             "https://fm.cnbc.com/applications/cnbc.com/resources/img/editorial/2017/08/24/104670887-VacationExplainsTHUMBWEB.1910x1000.jpg",
         },
       ],
-      screen: "Photo",
     };
 
     this.RemovePhoto = this.RemovePhoto.bind(this);
-    this.navigate = this.navigate.bind(this);
   }
 
   RemovePhoto(postRemoved) {
@@ -43,30 +42,24 @@ class Main extends React.Component {
     }));
   }
 
-  navigate() {
-    this.setState({
-      screen: "AddPhoto",
-    });
-  }
-
   render() {
     return (
       <div>
-        {this.state.screen === "Photo" && (
-          <div>
-            <Tittle tittle={"Photowall"} />
-            <PhotoWall
-              posts={this.state.posts}
-              onRemovePhoto={this.RemovePhoto}
-              onNavigate={this.navigate}
-            />
-          </div>
-        )}
-        {this.state.screen === "AddPhoto" && (
-          <div>
-            <AddPhoto />
-          </div>
-        )}
+        <Route
+          exact
+          path="/"
+          render={() => (
+            <div>
+              <Tittle tittle={"Photowall"} />
+              <PhotoWall
+                posts={this.state.posts}
+                onRemovePhoto={this.RemovePhoto}
+                onNavigate={this.navigate}
+              />
+            </div>
+          )}
+        />
+        <Route path="/AddPhoto" component={AddPhoto} />
       </div>
     );
   }

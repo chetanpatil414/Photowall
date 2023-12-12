@@ -2,13 +2,16 @@ import React from "react";
 import Photo from "./Photo";
 
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 function PhotoWall(props) {
   return (
     <div>
-      <a className="addIcon" onClick={props.onNavigate} href="#AddPhoto">
+      <Link className="addIcon" to="/AddPhoto">
+        {" "}
         click me
-      </a>
+      </Link>
+
       {/* <button className="addIcon" onClick={props.onNavigate}>
         +
       </button> */}
